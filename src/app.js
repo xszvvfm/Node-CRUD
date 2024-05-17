@@ -1,6 +1,6 @@
 import express from 'express';
 import connect from './schemas/index.js';
-import productsRouter from './routes/products.router.js';
+import productsRouter from './routers/products.router.js';
 import errorHandlerMiddleware from './middlewares/error-handler.middleware.js';
 
 const app = express();
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
   return res.json({ message: 'Hi!' });
 });
 
-app.use('/api', router);
+app.use('/api', [router, productsRouter]);
 
 app.listen(PORT, () => {
   console.log(PORT, '포트로 서버가 열렸어요!');
